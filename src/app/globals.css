@@ -24,3 +24,62 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* APEX — Temas de cores */
+
+:root,
+:root[data-theme="cyan"] {
+  --apex-bg: #050d16;
+  --apex-card: #0b1b2a;
+  --apex-accent: #00c8ff;
+  --apex-soft: rgba(0, 200, 255, 0.12);
+  --apex-border: rgba(0, 200, 255, 0.25);
+}
+
+:root[data-theme="blue"] {
+  --apex-bg: #080e23;
+  --apex-card: #101d3a;
+  --apex-accent: #60a5fa;
+  --apex-soft: rgba(59, 130, 246, 0.12);
+  --apex-border: rgba(59, 130, 246, 0.3);
+}
+
+:root[data-theme="purple"] {
+  --apex-bg: #100b20;
+  --apex-card: #211334;
+  --apex-accent: #a78bfa;
+  --apex-soft: rgba(167, 139, 250, 0.12);
+  --apex-border: rgba(167, 139, 250, 0.3);
+}
+
+:root[data-theme="green"] {
+  --apex-bg: #061713;
+  --apex-card: #102b25;
+  --apex-accent: #34d399;
+  --apex-soft: rgba(52, 211, 153, 0.12);
+  --apex-border: rgba(52, 211, 153, 0.3);
+}
+
+/* Classes reutilizáveis */
+
+.apex-bg {
+  background-color: var(--apex-bg);
+}
+
+.apex-card {
+  background-color: var(--apex-card);
+  border-color: var(--apex-border);
+}
+
+.apex-accent {
+  color: var(--apex-accent);
+}
+
+.apex-button {
+  background-color: var(--apex-accent);
+  color: var(--apex-bg);
+}
+
+.apex-soft {
+  background-color: var(--apex-soft);
+  border-color: var(--apex-border);
+}
