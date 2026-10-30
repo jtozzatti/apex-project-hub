@@ -1,85 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root, :root[data-theme="cyan"] {
+  --apex-bg: #050d16; --apex-card: #0b1b2a; --apex-accent: #00c8ff;
+  --apex-soft: rgba(0,200,255,.12); --apex-border: rgba(0,200,255,.25);
+  --apex-header: rgba(5,13,22,.92); --apex-text: #fff; --apex-muted: #94a3b8;
+  --apex-line: rgba(255,255,255,.10); --apex-neutral: rgba(255,255,255,.03);
+  --apex-tag: rgba(255,255,255,.05); --apex-button-text: #050d16;
+  --apex-hero-shade: #050d16;
 }
-
+:root[data-theme="blue"] {
+  --apex-bg: #080e23; --apex-card: #101d3a; --apex-accent: #60a5fa;
+  --apex-soft: rgba(59,130,246,.12); --apex-border: rgba(59,130,246,.30);
+  --apex-header: rgba(8,14,35,.92); --apex-text: #fff; --apex-muted: #a5b4cc;
+  --apex-line: rgba(255,255,255,.10); --apex-neutral: rgba(255,255,255,.03);
+  --apex-tag: rgba(255,255,255,.05); --apex-button-text: #080e23;
+  --apex-hero-shade: #080e23;
+}
+:root[data-theme="purple"] {
+  --apex-bg: #100b20; --apex-card: #211334; --apex-accent: #a78bfa;
+  --apex-soft: rgba(167,139,250,.12); --apex-border: rgba(167,139,250,.30);
+  --apex-header: rgba(16,11,32,.92); --apex-text: #fff; --apex-muted: #b5a9c8;
+  --apex-line: rgba(255,255,255,.10); --apex-neutral: rgba(255,255,255,.03);
+  --apex-tag: rgba(255,255,255,.05); --apex-button-text: #100b20;
+  --apex-hero-shade: #100b20;
+}
+:root[data-theme="green"] {
+  --apex-bg: #061713; --apex-card: #102b25; --apex-accent: #34d399;
+  --apex-soft: rgba(52,211,153,.12); --apex-border: rgba(52,211,153,.30);
+  --apex-header: rgba(6,23,19,.92); --apex-text: #fff; --apex-muted: #9eb9af;
+  --apex-line: rgba(255,255,255,.10); --apex-neutral: rgba(255,255,255,.03);
+  --apex-tag: rgba(255,255,255,.05); --apex-button-text: #061713;
+  --apex-hero-shade: #061713;
+}
+:root[data-theme="charcoal"] {
+  --apex-bg: #262a30; --apex-card: #343941; --apex-accent: #d1d5db;
+  --apex-soft: rgba(209,213,219,.08); --apex-border: rgba(209,213,219,.20);
+  --apex-header: rgba(38,42,48,.94); --apex-text: #fff; --apex-muted: #b4bbc5;
+  --apex-line: rgba(255,255,255,.12); --apex-neutral: rgba(255,255,255,.04);
+  --apex-tag: rgba(255,255,255,.06); --apex-button-text: #262a30;
+  --apex-hero-shade: #262a30;
+}
+:root[data-theme="black"] {
+  --apex-bg: #050505; --apex-card: #171717; --apex-accent: #fff;
+  --apex-soft: rgba(255,255,255,.07); --apex-border: rgba(255,255,255,.18);
+  --apex-header: rgba(5,5,5,.94); --apex-text: #fff; --apex-muted: #aaa;
+  --apex-line: rgba(255,255,255,.12); --apex-neutral: rgba(255,255,255,.03);
+  --apex-tag: rgba(255,255,255,.05); --apex-button-text: #050505;
+  --apex-hero-shade: #050505;
+}
+:root[data-theme="white"] {
+  --apex-bg: #f4f5f7; --apex-card: #fff; --apex-accent: #30343b;
+  --apex-soft: rgba(48,52,59,.06); --apex-border: rgba(48,52,59,.18);
+  --apex-header: rgba(244,245,247,.94); --apex-text: #17191d; --apex-muted: #5f6875;
+  --apex-line: rgba(48,52,59,.14); --apex-neutral: #fff;
+  --apex-tag: rgba(48,52,59,.05); --apex-button-text: #fff;
+  --apex-hero-shade: #111820;
+}
+:root[data-theme="monochrome"] {
+  --apex-bg: #0b0d10; --apex-card: #20242b; --apex-accent: #f5f5f5;
+  --apex-soft: rgba(245,245,245,.08); --apex-border: rgba(245,245,245,.18);
+  --apex-header: rgba(11,13,16,.92); --apex-text: #fff; --apex-muted: #a3a8b2;
+  --apex-line: rgba(255,255,255,.12); --apex-neutral: rgba(255,255,255,.03);
+  --apex-tag: rgba(255,255,255,.05); --apex-button-text: #0b0d10;
+  --apex-hero-shade: #0b0d10;
+}
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--apex-bg);
+  --color-foreground: var(--apex-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--apex-bg); color: var(--apex-text); font-family: Arial, Helvetica, sans-serif; }
+.apex-bg { background: var(--apex-bg); color: var(--apex-text); }
+.apex-header { background: var(--apex-header); }
+.apex-card { background: var(--apex-card); border-color: var(--apex-border); }
+.apex-accent { color: var(--apex-accent); }
+.apex-button { background: var(--apex-accent); color: var(--apex-button-text); }
+.apex-soft { background: var(--apex-soft); border-color: var(--apex-border); }
+.apex-divider { border-color: var(--apex-line); }
+.apex-muted { color: var(--apex-muted); }
+.apex-neutral-card { background: var(--apex-neutral); border-color: var(--apex-line); }
+.apex-tag { background: var(--apex-tag); border-color: var(--apex-line); color: var(--apex-text); }
+.apex-console-outer { background: var(--apex-neutral); border-color: var(--apex-line); }
+.apex-progress { background: color-mix(in srgb, var(--apex-accent) 22%, transparent); }
+.apex-skeleton { background: var(--apex-line); }
+.apex-rule { background: linear-gradient(90deg, var(--apex-accent), transparent); opacity: .45; }
+.apex-hero { color: #fff; }
+.apex-hero-overlay { background: linear-gradient(90deg, var(--apex-hero-shade) 0%, color-mix(in srgb, var(--apex-hero-shade) 83%, transparent) 45%, color-mix(in srgb, var(--apex-hero-shade) 20%, transparent) 100%); }
+.apex-hero-bottom { background: linear-gradient(0deg, var(--apex-bg) 0%, transparent 42%, color-mix(in srgb, var(--apex-hero-shade) 30%, transparent) 100%); }
+/* No tema branco, os destaques da Hero permanecem legíveis sobre a fotografia escura. */
+:root[data-theme="white"] .apex-hero .apex-accent { color: #e5e7eb; }
+:root[data-theme="white"] .apex-hero .apex-button { background: #fff; color: #111820; }
+:root[data-theme="white"] .apex-hero .bg-\[var\(--apex-accent\)\] { background: #fff; }
+.apex-bg, .apex-header, .apex-card, .apex-soft, .apex-accent, .apex-button, .apex-divider, .apex-muted, .apex-neutral-card { transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Fotografia da rodovia: a imagem original permanece intacta. */
+.apex-road-photo {
+  background-image: url("/images/apex-hero.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Camada cromática, sincronizada com a paleta escolhida. */
+.apex-road-tint {
+  background: var(--apex-accent);
+  opacity: .19;
+  mix-blend-mode: color;
+  pointer-events: none;
+  transition: background-color 350ms ease, opacity 350ms ease;
+}
+:root[data-theme="cyan"] .apex-road-tint { opacity: .22; }
+:root[data-theme="blue"] .apex-road-tint { opacity: .3; }
+:root[data-theme="purple"] .apex-road-tint { opacity: .48; }
+:root[data-theme="green"] .apex-road-tint { opacity: .36; }
+:root[data-theme="charcoal"] .apex-road-tint,
+:root[data-theme="black"] .apex-road-tint,
+:root[data-theme="white"] .apex-road-tint,
+:root[data-theme="monochrome"] .apex-road-tint { opacity: 0; }
+.apex-road-preview { border-color: var(--apex-border); background: var(--apex-card); }
+.apex-road-preview .apex-road-photo { filter: saturate(.85) contrast(1.08); }
+.apex-road-shadow { background: linear-gradient(0deg, rgba(0,0,0,.85), rgba(0,0,0,.06) 78%); }
+:root[data-theme="charcoal"] .apex-road-photo,
+:root[data-theme="black"] .apex-road-photo,
+:root[data-theme="white"] .apex-road-photo,
+:root[data-theme="monochrome"] .apex-road-photo { filter: grayscale(1); }
+:root[data-theme="charcoal"] .apex-road-preview .apex-road-photo,
+:root[data-theme="black"] .apex-road-preview .apex-road-photo,
+:root[data-theme="white"] .apex-road-preview .apex-road-photo,
+:root[data-theme="monochrome"] .apex-road-preview .apex-road-photo { filter: grayscale(1) contrast(1.08); }
+
+/* APEX / NEXU — tonalidade dinâmica da fotografia original */
+:root, :root[data-theme="cyan"] { --apex-road-filter: saturate(1.3); }
+:root[data-theme="blue"] { --apex-road-filter: saturate(1.5) hue-rotate(15deg); }
+:root[data-theme="purple"] { --apex-road-filter: saturate(1.4) hue-rotate(75deg); }
+:root[data-theme="green"] { --apex-road-filter: saturate(1.3) hue-rotate(145deg); }
+:root[data-theme="charcoal"] { --apex-road-filter: grayscale(1) brightness(.8); }
+:root[data-theme="black"], :root[data-theme="monochrome"] { --apex-road-filter: grayscale(1) contrast(1.3) brightness(.7); }
+:root[data-theme="white"] { --apex-road-filter: grayscale(1) brightness(1.1); }
+
+/* NEXU — Painel ilustrativo (mantém contraste nos 8 temas) */
+.nexu-demo { background: linear-gradient(145deg, #091522, #040b14); border-color: var(--apex-border); color: #fff; }
+.nexu-demo-panel { background: linear-gradient(160deg, #0c1d2c, #07111d); border-color: color-mix(in srgb, var(--apex-accent) 28%, transparent); }
+.nexu-wave-bar { transform-origin: center; animation: nexu-wave 1.4s ease-in-out infinite alternate; }
+.nexu-progress { animation: nexu-progress 2.8s ease-in-out infinite alternate; }
+.nexu-spin { animation: nexu-pulse 2s ease-in-out infinite; }
+@keyframes nexu-wave { from { transform: scaleY(.55); opacity: .6; } to { transform: scaleY(1.1); opacity: 1; } }
+@keyframes nexu-progress { from { width: 24%; } to { width: 94%; } }
+@keyframes nexu-pulse { 50% { opacity: .45; transform: rotate(25deg); } }
+@media (prefers-reduced-motion: reduce) { .nexu-wave-bar,.nexu-progress,.nexu-spin { animation: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* APEX — Temas de cores */
-
-:root,
-:root[data-theme="cyan"] {
-  --apex-bg: #050d16;
-  --apex-card: #0b1b2a;
-  --apex-accent: #00c8ff;
-  --apex-soft: rgba(0, 200, 255, 0.12);
-  --apex-border: rgba(0, 200, 255, 0.25);
-}
-
-:root[data-theme="blue"] {
-  --apex-bg: #080e23;
-  --apex-card: #101d3a;
-  --apex-accent: #60a5fa;
-  --apex-soft: rgba(59, 130, 246, 0.12);
-  --apex-border: rgba(59, 130, 246, 0.3);
-}
-
-:root[data-theme="purple"] {
-  --apex-bg: #100b20;
-  --apex-card: #211334;
-  --apex-accent: #a78bfa;
-  --apex-soft: rgba(167, 139, 250, 0.12);
-  --apex-border: rgba(167, 139, 250, 0.3);
-}
-
-:root[data-theme="green"] {
-  --apex-bg: #061713;
-  --apex-card: #102b25;
-  --apex-accent: #34d399;
-  --apex-soft: rgba(52, 211, 153, 0.12);
-  --apex-border: rgba(52, 211, 153, 0.3);
-}
-
-/* Classes reutilizáveis */
-
-.apex-bg {
-  background-color: var(--apex-bg);
-}
-
-.apex-card {
-  background-color: var(--apex-card);
-  border-color: var(--apex-border);
-}
-
-.apex-accent {
-  color: var(--apex-accent);
-}
-
-.apex-button {
-  background-color: var(--apex-accent);
-  color: var(--apex-bg);
-}
-
-.apex-soft {
-  background-color: var(--apex-soft);
-  border-color: var(--apex-border);
 }

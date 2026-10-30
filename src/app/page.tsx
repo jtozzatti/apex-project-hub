@@ -1,17 +1,83 @@
+
+import { project } from "@/config/project";
+
 import ApexLogo from "@/components/ApexLogo";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import NexuDashboard from "@/components/NexuDashboard";
+import RoadToNext from "@/components/RoadToNext";
+import DeliveriesSection from "@/components/DeliveriesSection";
+import TeamSection from "@/components/TeamSection";
+
+// ==========================================
+// INDICADORES INTERATIVOS
+// ==========================================
+
+const indicators = [
+  {
+    number: "03",
+    label: "INTEGRANTES",
+    href: "#equipe",
+  },
+  {
+    number: "01",
+    label: "PROJETO",
+    href: "#projetos",
+  },
+  {
+    number: "01",
+    label: "SPRINT CONCLUÍDA",
+    href: "#entregas",
+  },
+  {
+    number: "∞",
+    label: "NOSSA AMBIÇÃO",
+    href: "#jornada",
+  },
+];
+
+// ==========================================
+// TECNOLOGIAS DO NEXU
+// ==========================================
+
+const technologies = [
+  "Python",
+  "FastAPI",
+  "Gemini",
+  "Streamlit",
+  "SQLite",
+];
+
+// ==========================================
+// NAVEGAÇÃO
+// ==========================================
+
+const navigation = [
+  { label: "Objetivo", href: "#objetivo" },
+  { label: "NEXU", href: "#projetos" },
+  { label: "Road to NEXT", href: "#jornada" },
+  { label: "Entregas", href: "#entregas" },
+  { label: "Equipe", href: "#equipe" },
+];
+
+// ==========================================
+// PÁGINA PRINCIPAL
+// ==========================================
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#050D16] text-white">
+    <main className="apex-bg min-h-screen">
 
-      {/* HEADER — Navegação principal */}
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050D16]/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+      {/* ======================================
+          HEADER / NAVEGAÇÃO
+      ====================================== */}
 
-          {/* Identidade oficial da APEX */}
+      <header className="apex-header apex-divider sticky top-0 z-50 border-b backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-6">
+
+          {/* LOGOTIPO APEX */}
           <a
-            href="#"
-            className="group flex items-center gap-3"
+            href="#inicio"
+            className="group flex shrink-0 items-center gap-3"
             aria-label="APEX — Voltar ao início"
           >
             <ApexLogo
@@ -19,174 +85,214 @@ export default function Home() {
               className="transition duration-300 group-hover:scale-105"
             />
 
-            <span className="text-xl font-bold tracking-[0.25em] text-white">
+            <span className="text-lg font-bold tracking-[0.25em] sm:text-xl">
               APEX
             </span>
           </a>
 
-          {/* Menu de navegação */}
-          <nav className="hidden items-center gap-8 text-sm text-slate-300 md:flex">
-            <a href="#objetivo" className="transition hover:text-cyan-400">
-              Objetivo
-            </a>
-
-            <a href="#projetos" className="transition hover:text-cyan-400">
-              Projetos
-            </a>
-
-            <a href="#jornada" className="transition hover:text-cyan-400">
-              Road to NEXT
-            </a>
-
-            <a href="#equipe" className="transition hover:text-cyan-400">
-              Equipe
-            </a>
+          {/* LINKS DE NAVEGAÇÃO */}
+          <nav
+            className="hidden items-center gap-6 text-sm apex-muted lg:flex"
+            aria-label="Navegação principal"
+          >
+            {navigation.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="whitespace-nowrap transition-colors duration-300 hover:text-[var(--apex-accent)]"
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
 
-          {/* Botão de destaque */}
-          <a
-            href="#projetos"
-            className="rounded-lg border border-cyan-400/40 bg-cyan-400/10 px-5 py-2.5 text-sm font-semibold text-cyan-300 transition hover:bg-cyan-400 hover:text-slate-950"
-          >
-            {/* Ações do Header */}
-<div className="flex items-center gap-3">
-  <ThemeSwitcher />
+          {/* AÇÕES DO HEADER */}
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
 
-  <a
-    href="#projetos"
-    className="rounded-lg border px-5 py-2.5 text-sm font-semibold transition hover:brightness-125 apex-soft apex-accent"
-  >
-                {/* Ações do Header */}
-                <div className="flex items-center gap-3">
-                  <ThemeSwitcher />
+            <ThemeSwitcher />
 
-                  <a
-                    href="#projetos"
-                    className="rounded-lg border px-5 py-2.5 text-sm font-semibold transition hover:brightness-125 apex-soft apex-accent"
-                  >
-                    Explorar projeto
-                  </a>
-                </div>
-  </a>
-</div>
+            <a
+              href="#projetos"
+              className="apex-soft apex-accent hidden rounded-lg border px-4 py-2.5 text-sm font-semibold transition hover:brightness-110 xl:inline-flex"
+            >
+              Explorar projeto
+            </a>
 
-      {/* HERO — Apresentação cinematográfica */}
-      <section className="relative isolate flex min-h-[88vh] scroll-mt-24 items-center overflow-hidden px-6 py-24 md:px-12 lg:px-20">
-        {/* Imagem de fundo: public/images/apex-hero.webp */}
+          </div>
+        </div>
+      </header>
+
+      {/* ======================================
+          HERO / APRESENTAÇÃO APEX
+      ====================================== */}
+
+      <section
+        id="inicio"
+        className="apex-hero relative isolate flex min-h-[82vh] scroll-mt-24 items-center overflow-hidden px-6 py-28 md:px-12 lg:px-20"
+      >
+
+        {/* FOTOGRAFIA DA RODOVIA */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/apex-hero.webp')" }}
+          className="apex-road-photo absolute inset-0 z-0"
         />
 
-        {/* Sobreposições para manter o texto legível */}
+        {/* CAMADAS DE COR E CONTRASTE */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-[#050D16]/95 via-[#050D16]/65 to-[#050D16]/10"
+          className="apex-road-tint absolute inset-0 z-0"
         />
+
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-[#050D16] via-transparent to-[#050D16]/30"
+          className="apex-hero-overlay absolute inset-0 z-0"
         />
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="max-w-3xl">
+
+        <div
+          aria-hidden="true"
+          className="apex-hero-bottom absolute inset-0 z-0"
+        />
+
+        {/* CONTEÚDO DA HERO */}
+        <div className="relative z-10 mx-auto w-full max-w-7xl">
+          <div className="max-w-4xl">
+
             <div className="mb-8 flex items-center gap-3">
-              <span className="h-px w-10 bg-cyan-400" />
-              <p className="text-xs font-semibold tracking-[0.35em] text-cyan-300 md:text-sm">
+              <span className="h-px w-10 bg-[var(--apex-accent)]" />
+
+              <p className="apex-accent text-xs font-semibold tracking-[0.25em] md:text-sm">
                 CHALLENGE MOTIVA 2026
               </p>
             </div>
 
-            <h1 className="text-5xl font-black uppercase leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
+            <h1 className="max-w-4xl text-[clamp(2.65rem,6.2vw,5.5rem)] font-black uppercase leading-[1.08] tracking-tight text-white">
               Excelência
-              <span className="block">não é destino.</span>
-              <span className="block text-cyan-400">É consequência.</span>
+
+              <span className="block">
+                não é destino.
+              </span>
+
+              <span className="apex-accent block">
+                É consequência.
+              </span>
             </h1>
 
-            <p className="mt-8 max-w-xl text-base leading-relaxed text-slate-300 md:text-lg">
+            <p className="mt-8 max-w-xl text-base leading-relaxed text-slate-200 md:text-lg">
               Três mentes. Uma mesma direção.
-              <span className="block">Tecnologia aplicada a desafios reais.</span>
+
+              <span className="block">
+                Tecnologia aplicada a desafios reais.
+              </span>
             </p>
 
+            {/* BOTÕES */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
+
               <a
                 href="#projetos"
-                className="rounded-lg bg-cyan-400 px-7 py-4 text-sm font-bold text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.2)] transition duration-300 hover:-translate-y-1 hover:bg-cyan-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.4)]"
+                className="apex-button rounded-lg px-7 py-4 text-sm font-bold transition duration-300 hover:-translate-y-1 hover:brightness-110"
               >
                 Explorar o projeto ↗
               </a>
+
               <a
                 href="#jornada"
-                className="rounded-lg border border-white/25 bg-black/30 px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-cyan-400/60 hover:bg-cyan-400/10"
+                className="rounded-lg border border-white/25 bg-black/30 px-7 py-4 text-sm font-semibold text-white backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-[var(--apex-accent)]"
               >
                 Nossa jornada →
               </a>
+
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-10 right-8 hidden flex-col items-end gap-2 text-[10px] tracking-[0.2em] text-cyan-200/60 lg:flex">
+        {/* ASSINATURA VISUAL */}
+        <div className="absolute bottom-10 right-8 z-10 hidden flex-col items-end gap-2 text-[10px] tracking-[0.2em] text-slate-300/70 lg:flex">
           <span>APEX / 2026</span>
-          <span>TECHNOLOGY & INNOVATION</span>
-          <span className="text-cyan-400">/// FUTURE AHEAD</span>
+          <span>TECHNOLOGY &amp; INNOVATION</span>
+          <span className="apex-accent">/// FUTURE AHEAD</span>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-slate-400 md:flex">
-          <span className="text-[10px] uppercase tracking-[0.3em]">Scroll to explore</span>
-          <div className="h-10 w-px bg-gradient-to-b from-cyan-400 to-transparent" />
+        {/* INDICADOR DE ROLAGEM */}
+        <div className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-slate-400 md:flex">
+          <span className="text-[10px] uppercase tracking-[0.3em]">
+            Scroll to explore
+          </span>
+
+          <div className="h-10 w-px bg-gradient-to-b from-[var(--apex-accent)] to-transparent" />
         </div>
+
       </section>
 
-      {/* INDICADORES — Resumo da APEX */}
-      <section className="relative z-10 -mt-8 px-6 pb-20">
+      {/* ======================================
+          INDICADORES INTERATIVOS
+      ====================================== */}
+
+      <section className="relative z-20 -mt-8 px-6 pb-20">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 lg:grid-cols-4">
 
-          {[
-            { number: "03", label: "INTEGRANTES" },
-            { number: "01", label: "PROJETO" },
-            { number: "01", label: "SPRINT CONCLUÍDA" },
-            { number: "∞", label: "NOSSA AMBIÇÃO" },
-          ].map((item) => (
-            <div
+          {indicators.map((item) => (
+            <a
               key={item.label}
-              className="group rounded-2xl border border-cyan-400/20 bg-[#0B1B2A]/95 p-6 shadow-xl backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-400/60 hover:shadow-[0_0_30px_rgba(34,211,238,0.1)]"
+              href={item.href}
+              aria-label={`Explorar ${item.label.toLowerCase()}`}
+              className="apex-card group relative block rounded-2xl border p-5 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-[var(--apex-accent)] hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--apex-accent)] md:p-6"
             >
-              <p className="text-3xl font-bold tracking-tight text-cyan-400 md:text-4xl">
-                {item.number}
-              </p>
 
-              <p className="mt-2 text-xs font-semibold tracking-[0.15em] text-slate-400">
+              <div className="flex items-start justify-between gap-2">
+
+                <p className="apex-accent text-3xl font-bold tracking-tight md:text-4xl">
+                  {item.number}
+                </p>
+
+                <span
+                  aria-hidden="true"
+                  className="apex-accent text-lg opacity-40 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:opacity-100"
+                >
+                  ↗
+                </span>
+
+              </div>
+
+              <p className="apex-muted mt-2 text-xs font-semibold tracking-[0.12em]">
                 {item.label}
               </p>
 
-              <div className="mt-5 h-px w-full bg-gradient-to-r from-cyan-400/40 to-transparent" />
-            </div>
+              <div className="apex-rule mt-5 h-px w-full transition-all duration-300 group-hover:bg-[var(--apex-accent)]" />
+
+            </a>
           ))}
 
         </div>
       </section>
 
-      {/* OBJETIVO — Nosso propósito */}
+      {/* ======================================
+          01 / NOSSO OBJETIVO
+      ====================================== */}
+
       <section
         id="objetivo"
-        className="relative scroll-mt-24 border-t border-white/10 px-6 py-28"
+        className="apex-divider scroll-mt-24 border-t px-6 py-24 md:py-28"
       >
         <div className="mx-auto max-w-6xl">
 
-          <p className="mb-4 text-sm font-semibold tracking-[0.25em] text-cyan-400">
+          <p className="apex-accent mb-4 text-sm font-semibold tracking-[0.25em]">
             01 / NOSSO OBJETIVO
           </p>
 
           <h2 className="max-w-3xl text-4xl font-bold tracking-tight md:text-5xl">
             Transformando desafios reais em
-            <span className="text-cyan-400"> soluções inteligentes.</span>
+            <span className="apex-accent">
+              {" "}soluções inteligentes.
+            </span>
           </h2>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">
 
-            {/* Problema */}
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
-              <p className="mb-4 text-sm font-semibold text-cyan-400">
+            {/* DESAFIO */}
+            <div className="apex-neutral-card rounded-2xl border p-7 md:p-8">
+
+              <p className="apex-accent mb-4 text-sm font-semibold">
                 O DESAFIO
               </p>
 
@@ -194,18 +300,20 @@ export default function Home() {
                 Operações que exigem agilidade.
               </h3>
 
-              <p className="leading-relaxed text-slate-400">
+              <p className="apex-muted leading-relaxed">
                 O registro de ocorrências rodoviárias exige atenção,
                 organização e precisão. Nosso desafio é explorar
                 como a tecnologia pode apoiar esse processo,
                 reduzindo tarefas manuais e facilitando a
                 estruturação das informações.
               </p>
+
             </div>
 
-            {/* Solução */}
-            <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.04] p-8">
-              <p className="mb-4 text-sm font-semibold text-cyan-400">
+            {/* PROPOSTA */}
+            <div className="apex-soft rounded-2xl border p-7 md:p-8">
+
+              <p className="apex-accent mb-4 text-sm font-semibold">
                 NOSSA PROPOSTA
               </p>
 
@@ -213,125 +321,117 @@ export default function Home() {
                 Inteligência artificial como copiloto.
               </h3>
 
-              <p className="leading-relaxed text-slate-400">
+              <p className="apex-muted leading-relaxed">
                 Estamos desenvolvendo uma solução que utiliza
                 inteligência artificial para interpretar relatos
                 por texto ou voz, organizar dados de ocorrências
                 e permitir a revisão humana antes do registro.
               </p>
+
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* PROJETOS — Soluções desenvolvidas */}
+      {/* ======================================
+          02 / NEXU — PROJETO PRINCIPAL
+      ====================================== */}
+
       <section
         id="projetos"
-        className="relative scroll-mt-24 border-t border-white/10 px-6 py-28"
+        className="apex-divider scroll-mt-24 border-t px-6 py-24 md:py-28"
       >
         <div className="mx-auto max-w-6xl">
 
-          {/* Cabeçalho */}
-          <p className="mb-4 text-sm font-semibold tracking-[0.25em] text-cyan-400">
-            02 / NOSSOS PROJETOS
+          <p className="apex-accent mb-4 text-sm font-semibold tracking-[0.25em]">
+            02 / NOSSO PROJETO
           </p>
 
           <h2 className="max-w-3xl text-4xl font-bold tracking-tight md:text-5xl">
             Da ideia à
-            <span className="text-cyan-400"> execução.</span>
+            <span className="apex-accent"> execução.</span>
           </h2>
 
-          <p className="mt-6 max-w-2xl leading-relaxed text-slate-400">
-            Conheça as soluções que estamos desenvolvendo
+          <p className="apex-muted mt-6 max-w-2xl leading-relaxed">
+            Conheça a solução que estamos desenvolvendo
             para transformar desafios em aplicações reais
             de tecnologia e inteligência artificial.
           </p>
 
-          {/* Card do projeto */}
-          <div className="group mt-12 overflow-hidden rounded-3xl border border-cyan-400/20 bg-[#0B1B2A] transition duration-300 hover:border-cyan-400/50">
+          {/* CARD PRINCIPAL NEXU */}
+          <div className="apex-card mt-12 overflow-hidden rounded-3xl border transition duration-300 hover:border-[var(--apex-accent)]">
 
-            <div className="grid gap-8 p-8 md:grid-cols-2 md:p-12">
+            <div className="grid gap-8 p-7 md:grid-cols-2 md:p-12">
 
-              {/* Informações */}
+              {/* DESCRIÇÃO DO PROJETO */}
               <div className="flex flex-col justify-center">
 
-                <span className="mb-6 w-fit rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs font-semibold text-cyan-300">
+                <span className="apex-soft apex-accent mb-6 w-fit rounded-full border px-4 py-2 text-xs font-semibold">
                   MVP DESENVOLVIDO
                 </span>
 
                 <h3 className="text-4xl font-bold tracking-tight md:text-5xl">
-                  ROUTE <span className="text-cyan-400">AI</span>
+                  {project.name}
                 </h3>
 
-                <p className="mt-6 leading-relaxed text-slate-400">
+                <p className="apex-muted mt-6 leading-relaxed">
                   Assistente de inteligência artificial desenvolvido
                   para apoiar profissionais de operações rodoviárias
                   no registro de ocorrências, utilizando processamento
                   de linguagem natural e interação por voz.
                 </p>
 
-                {/* Tecnologias */}
+                {/* TECNOLOGIAS */}
                 <div className="mt-8 flex flex-wrap gap-2">
-                  {["Python", "FastAPI", "Gemini", "Streamlit", "SQLite"].map(
-                    (tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-cyan-200"
-                      >
-                        {tech}
-                      </span>
-                    )
-                  )}
+                  {technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="apex-tag rounded-lg border px-3 py-2 text-xs"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
 
-                {/* GitHub */}
+                {/* GITHUB */}
                 <a
-                  href="https://github.com/jtozzatti/motiva-challenge-2026"
+                  href={project.repositoryUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-10 w-fit rounded-lg bg-cyan-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
+                  className="apex-button mt-10 w-fit rounded-lg px-6 py-3 font-semibold transition hover:brightness-110"
                 >
                   Ver projeto no GitHub ↗
                 </a>
+
               </div>
-              {/* Representação visual */}
-              <div className="flex min-h-72 items-center justify-center rounded-2xl border border-cyan-400/10 bg-[#07121E] p-8">
 
-                <div className="w-full max-w-sm rounded-xl border border-cyan-400/20 bg-[#0D2535] p-6 shadow-[0_0_60px_rgba(0,200,255,0.06)]">
-
-                  <div className="mb-6 flex items-center justify-between">
-                    <span className="text-sm font-semibold text-cyan-300">
-                      ROUTE AI / CONSOLE
-                    </span>
-
-                    <span className="h-2 w-2 rounded-full bg-cyan-400" />
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="h-3 w-3/4 rounded bg-cyan-400/20" />
-                    <div className="h-3 w-full rounded bg-white/10" />
-                    <div className="h-3 w-2/3 rounded bg-white/10" />
-                  </div>
-
-                  <div className="mt-8 rounded-lg border border-cyan-400/20 bg-cyan-400/5 p-4">
-                    <p className="text-xs text-cyan-300">
-                      STATUS DO SISTEMA
-                    </p>
-
-                    <p className="mt-2 text-sm text-slate-300">
-                      Interface de apoio ao registro de ocorrências
-                    </p>
-                  </div>
-
-                </div>
-              </div>
+              {/* PAINEL DEMONSTRATIVO */}
+              <NexuDashboard />
 
             </div>
           </div>
         </div>
       </section>
 
+      {/* ======================================
+          03 / ROAD TO NEXT
+      ====================================== */}
+
+      <RoadToNext />
+
+      {/* ======================================
+          04 / ENTREGAS ACADÊMICAS
+      ====================================== */}
+
+      <DeliveriesSection />
+
+      {/* ======================================
+          05 / EQUIPE APEX
+      ====================================== */}
+
+      <TeamSection />
+
     </main>
   );
 }
-
