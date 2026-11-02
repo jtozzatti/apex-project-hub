@@ -4,24 +4,24 @@ import Image from "next/image";
 const milestones = [
   {
     number: "01",
-    label: "O QUE CONQUISTAMOS",
-    title: "NEXT / 2º lugar",
+    label: "DE ONDE VIEMOS",
+    title: "KORA / NEXT / 2º lugar",
     description:
-      "Uma conquista para celebrar o trabalho em equipe e tudo o que aprendemos até aqui.",
+      "Nossa primeira equipe conquistou o segundo lugar no NEXT da FIAP com o Challenge FlexMedia. Uma experiência que marcou o início da nossa trajetória.",
   },
   {
     number: "02",
     label: "NOSSO PRESENTE",
-    title: "Challenge Motiva 2026",
+    title: "APEX / Challenge Motiva 2026",
     description:
-      "Um novo desafio para transformar ideias em soluções reais, com tecnologia e colaboração.",
+      "Uma nova identidade, um novo desafio e a mesma vontade de transformar conhecimento em soluções reais.",
   },
   {
     number: "03",
     label: "NOSSA AMBIÇÃO",
     title: "Em busca do 1º lugar",
     description:
-      "Seguimos evoluindo. O próximo capítulo ainda está sendo escrito.",
+      "Queremos ir além das entregas acadêmicas, aprender com nossos erros e construir projetos que façam a diferença.",
   },
 ];
 
@@ -33,7 +33,6 @@ export default function RoadToNext() {
       className="apex-divider scroll-mt-24 border-t px-5 py-24 md:px-8 md:py-32"
     >
       <div className="mx-auto max-w-6xl">
-
         {/* CABEÇALHO */}
         <div className="mb-10 flex flex-col gap-5 md:mb-14 md:flex-row md:items-end md:justify-between">
           <div>
@@ -60,10 +59,8 @@ export default function RoadToNext() {
 
         {/* FOTO + HISTÓRIA */}
         <div className="apex-card grid overflow-hidden rounded-[1.75rem] border shadow-2xl lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
-
           {/* FOTOGRAFIA ORIGINAL */}
           <div className="relative min-w-0 bg-[#090b17]">
-
             <Image
               src="/images/next-team-team.jpg"
               alt="Gabriel, João Victor e Pedro comemorando juntos no NEXT da FIAP, segurando os shapes do evento"
@@ -76,7 +73,6 @@ export default function RoadToNext() {
 
             {/* IDENTIFICAÇÃO DA CONQUISTA */}
             <div className="absolute left-4 top-4 flex flex-wrap gap-2 sm:left-6 sm:top-6">
-
               <span className="rounded-full border border-white/30 bg-black/65 px-4 py-2 text-[10px] font-bold tracking-[0.16em] text-white backdrop-blur-md sm:text-xs">
                 FIAP NEXT
               </span>
@@ -84,13 +80,11 @@ export default function RoadToNext() {
               <span className="rounded-full border border-white/30 bg-black/65 px-4 py-2 text-[10px] font-bold tracking-[0.16em] text-white backdrop-blur-md sm:text-xs">
                 2º LUGAR
               </span>
-
             </div>
           </div>
 
           {/* TEXTO DA CONQUISTA */}
           <div className="flex min-w-0 flex-col justify-center p-7 sm:p-10 lg:p-12">
-
             <div className="mb-7 h-1 w-14 rounded-full bg-[var(--apex-accent)]" />
 
             <p className="apex-accent mb-5 text-xs font-bold tracking-[0.22em]">
@@ -105,11 +99,33 @@ export default function RoadToNext() {
               </span>
             </h3>
 
-            <p className="apex-muted mt-7 max-w-lg text-sm leading-relaxed sm:text-base">
-              Celebramos o que construímos juntos no NEXT.
-              Agora, levamos essa experiência para novos desafios,
-              com a mesma vontade de aprender, criar e ir além.
-            </p>
+            <div className="apex-muted mt-7 max-w-lg space-y-4 text-sm leading-relaxed sm:text-base">
+              <p>
+                Tudo começou com a{" "}
+                <strong className="font-semibold text-white">
+                  KORA
+                </strong>
+                , nossa primeira equipe, durante o Challenge
+                proposto pela{" "}
+                <strong className="font-semibold text-white">
+                  FlexMedia
+                </strong>
+                . Entre desafios, ideias, erros e aprendizados,
+                transformamos nosso esforço em uma conquista:
+                o segundo lugar no NEXT da FIAP.
+              </p>
+
+              <p>
+                Hoje, seguimos um novo caminho como{" "}
+                <strong className="font-semibold text-white">
+                  APEX
+                </strong>
+                , levando conosco essa experiência e a mesma
+                vontade de ir além. Novos desafios, novas
+                tecnologias e um objetivo ainda maior: evoluir,
+                construir soluções reais e buscar o primeiro lugar.
+              </p>
+            </div>
 
             <div className="apex-rule my-9 h-px w-full" />
 
@@ -120,21 +136,17 @@ export default function RoadToNext() {
             <p className="apex-muted mt-2 text-sm">
               Três mentes. Uma mesma direção.
             </p>
-
           </div>
         </div>
 
         {/* LINHA DO TEMPO */}
         <div className="mt-12 grid gap-4 md:grid-cols-3">
-
           {milestones.map((item, index) => (
             <div
               key={item.number}
               className="apex-neutral-card relative overflow-hidden rounded-2xl border p-6 transition duration-300 hover:-translate-y-1 hover:border-[var(--apex-accent)] md:p-7"
             >
-
               <div className="mb-7 flex items-center justify-between gap-3">
-
                 <span className="apex-accent text-3xl font-black tracking-tight">
                   {item.number}
                 </span>
@@ -142,7 +154,6 @@ export default function RoadToNext() {
                 <span className="apex-muted text-[10px] font-semibold tracking-[0.14em]">
                   {index === 0 ? "✓" : index === 1 ? "●" : "↗"}
                 </span>
-
               </div>
 
               <p className="apex-accent mb-3 text-[10px] font-bold tracking-[0.18em]">
@@ -156,17 +167,14 @@ export default function RoadToNext() {
               <p className="apex-muted text-sm leading-relaxed">
                 {item.description}
               </p>
-
             </div>
           ))}
-
         </div>
 
         {/* ASSINATURA */}
         <p className="apex-muted mt-8 text-center text-xs tracking-[0.1em]">
           APEX / TRÊS MENTES, UMA MESMA DIREÇÃO.
         </p>
-
       </div>
     </section>
   );

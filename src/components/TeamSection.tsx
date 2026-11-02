@@ -15,9 +15,7 @@ export default function TeamSection() {
 
   useEffect(() => {
     if (selected === null) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setSelected(null);
-    };
+    const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") setSelected(null); };
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKeyDown);
@@ -30,23 +28,18 @@ export default function TeamSection() {
   return (
     <section id="equipe" className="apex-divider scroll-mt-24 border-t px-6 py-24 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <p className="apex-accent mb-4 text-sm font-semibold tracking-[0.25em]">03 / NOSSA EQUIPE</p>
+        <p className="apex-accent mb-4 text-sm font-semibold tracking-[0.25em]">05 / NOSSA EQUIPE</p>
         <h2 className="max-w-3xl text-4xl font-bold tracking-tight md:text-5xl">
           As mentes por trás da <span className="apex-accent">APEX.</span>
         </h2>
         <p className="apex-muted mt-6 max-w-2xl leading-relaxed">
           Três integrantes, uma mesma direção. Conheça quem está construindo este projeto.
         </p>
-
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {members.map((person, index) => (
-            <button
-              key={person.name}
-              type="button"
-              onClick={() => setSelected(index)}
+            <button key={person.name} type="button" onClick={() => setSelected(index)}
               aria-label={`Abrir perfil de ${person.name}`}
-              className="apex-card group overflow-hidden rounded-2xl border text-left transition-all duration-300 hover:-translate-y-2 hover:border-[var(--apex-accent)] hover:shadow-[0_18px_55px_-28px_var(--apex-accent)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--apex-accent)]"
-            >
+              className="apex-card group overflow-hidden rounded-2xl border text-left transition-all duration-300 hover:-translate-y-2 hover:border-[var(--apex-accent)] hover:shadow-[0_18px_55px_-28px_var(--apex-accent)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--apex-accent)]">
               <div className="relative aspect-[4/5] overflow-hidden bg-black/20">
                 <Image src={person.image} alt={person.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-center transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
@@ -63,7 +56,6 @@ export default function TeamSection() {
           ))}
         </div>
       </div>
-
       {member && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-[#020711]/80 p-4 backdrop-blur-xl sm:p-8" onMouseDown={(event) => { if (event.target === event.currentTarget) setSelected(null); }}>
           <div role="dialog" aria-modal="true" aria-label={`Perfil de ${member.name}`} className="apex-card relative my-auto w-full max-w-3xl overflow-hidden rounded-3xl border shadow-2xl">

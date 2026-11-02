@@ -152,7 +152,46 @@ body { margin: 0; background: var(--apex-bg); color: var(--apex-text); font-fami
 @media (prefers-reduced-motion: reduce) { .nexu-wave-bar,.nexu-progress,.nexu-spin { animation: none; } }
 
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
+  html { scroll-behavior: smooth; }
+}
+
+/* APEX V1 — ajustes exclusivos do Hero em celulares */
+@media (max-width: 767px) {
+  .apex-hero .apex-road-photo {
+    background-position: 58% center;
+  }
+
+  .apex-hero .apex-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--apex-hero-shade) 65%, transparent) 0%,
+      color-mix(in srgb, var(--apex-hero-shade) 56%, transparent) 48%,
+      color-mix(in srgb, var(--apex-hero-shade) 32%, transparent) 100%
+    );
+  }
+
+  .apex-hero .apex-hero-bottom {
+    background: linear-gradient(
+      0deg,
+      var(--apex-bg) 0%,
+      transparent 32%,
+      color-mix(in srgb, var(--apex-hero-shade) 16%, transparent) 100%
+    );
+  }
+}
+
+/* Ajustes exclusivos para celulares */
+@media (max-width: 767px) {
+  .apex-hero .apex-road-photo {
+    background-position: 58% center;
+  }
+
+  .apex-hero .apex-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--apex-hero-shade) 70%, transparent) 0%,
+      color-mix(in srgb, var(--apex-hero-shade) 48%, transparent) 55%,
+      color-mix(in srgb, var(--apex-hero-shade) 25%, transparent) 100%
+    );
   }
 }

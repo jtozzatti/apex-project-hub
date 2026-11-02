@@ -1,78 +1,442 @@
 "use client";
 
+
+
 import { useState } from "react";
 
-type View = "audio" | "data" | "review";
-const bars = Array.from({ length: 45 }, (_, i) => 9 + Math.abs(Math.sin(i * 1.31) * Math.cos(i * .43)) * 47);
-const tabs: { id: View; label: string; symbol: string }[] = [
-  { id: "audio", label: "Áudio", symbol: "◉" },
-  { id: "data", label: "Dados", symbol: "▤" },
-  { id: "review", label: "Revisão", symbol: "✓" },
+
+
+type DeliveryCategory = "sprint1" | "sprint2";
+
+type MemberId = "joao" | "pedro" | "gabriel";
+
+type DeliveryLink = { label: string; href: string };
+
+type Delivery = {
+
+  id: string;
+
+  category: DeliveryCategory;
+
+  memberId: MemberId;
+
+  subject: string;
+
+  title: string;
+
+  summary: string;
+
+  details: string;
+
+  technologies: string[];
+
+  links: DeliveryLink[];
+
+  note?: string;
+
+};
+
+
+
+const categories: { id: DeliveryCategory; title: string; subtitle: string }[] = [
+
+  { id: "sprint1", title: "Sprint 01", subtitle: "Fundamentos e primeiras entregas" },
+
+  { id: "sprint2", title: "Sprint 02", subtitle: "Próxima etapa" },
+
+
 ];
 
-export default function NexuDashboard() {
-  const [view, setView] = useState<View>("audio");
+
+
+const members: Record<MemberId, { name: string; image: string; initials: string }> = {
+
+  joao: { name: "João Victor Tozzatti Matiro", image: "/images/equipe/joao.png", initials: "JV" },
+
+  pedro: { name: "Pedro Diagro Lopes", image: "/images/equipe/pedro.png", initials: "PD" },
+
+  gabriel: { name: "Gabriel Henrique Pioli", image: "/images/equipe/gabriel.png", initials: "GP" },
+
+};
+// Para disponibilizar materiais, adicione { label: "Ver relatório", href: "https://..." }// ao array links do trabalho correspondente. Não use URLs fictícias.
+const deliveries: Delivery[] = [
+
+  {
+
+    id: "neuromorfica", category: "sprint1", memberId: "joao",
+
+    subject: "Cluster Computing, Computação Neuromórfica e Supercomputadores",
+
+    title: "Sinalização Rodoviária Inteligente",
+
+    summary: "Estudo de viabilidade para complementar o triângulo refletivo com sensoriamento de vibrações, processamento local e reforço luminoso temporário.",
+
+    details: "Comparação entre sinalização convencional e uma possível arquitetura com sensor piezoelétrico e LEDs. O relatório discute limitações, acionamentos indevidos, autonomia e integração futura com registros operacionais, sem afirmar eficácia experimental.",
+
+    technologies: ["Smart Roads", "Sensoriamento", "Edge Computing", "Viabilidade técnica"],
+
+    links: [], note: "Estudo conceitual; não houve protótipo físico.",
+
+  },
+
+  {
+
+    id: "genai", category: "sprint1", memberId: "joao",
+
+    subject: "Generative AI & Advanced Nets",
+
+    title: "Blueprint de Arquitetura do Assistente de IA",
+
+    summary: "Planejamento de uma solução de IA generativa para apoiar profissionais da Motiva por meio de linguagem natural e voz.",
+
+    details: "O blueprint contempla o problema operacional, personas, dados, modelos, agentes, interface e fluxo de informações, com atenção à privacidade, rastreabilidade e confirmação humana. A arquitetura orienta a evolução do assistente NEXU.",
+
+    technologies: ["Generative AI", "LLMs", "Agentes de IA", "Arquitetura"],
+
+    links: [], note: "Blueprint arquitetural; não representa a implementação completa do produto.",
+
+  },
+
+  {
+
+    id: "governanca", category: "sprint1", memberId: "joao",
+
+    subject: "Governança em IA e Business Analytics",
+
+    title: "Governança e Segurança da IA Operacional",
+
+    summary: "Definição de critérios de acesso, privacidade, rastreabilidade e confirmação humana para interações por voz nas operações rodoviárias.",
+
+    details: "A documentação aborda permissões por persona, responsabilidades, inventário de dados, LGPD, logs de auditoria, riscos de alucinação e limites para decisões automatizadas. Inclui roteiro de interação governada e defesa da proposta.",
+
+    technologies: ["Governança de IA", "LGPD", "Rastreabilidade", "Human-in-the-loop"],
+
+    links: [], note: "Critérios propostos; não pressupõem implementação integral no MVP.",
+
+  },
+
+  {
+
+    id: "rpa", category: "sprint1", memberId: "pedro",
+
+    subject: "AI for Robotic Process Automation",
+
+    title: "Triagem Inteligente de Ocorrências Rodoviárias",
+
+    summary: "Automação do recebimento e encaminhamento de solicitações operacionais com apoio de IA para interpretação de relatos.",
+
+    details: "O projeto organiza o fluxo de entrada por e-mail e planilhas, classificação e extração de informações, registro estruturado e encaminhamento. A solução prepara a conexão com funções acionáveis por um agente de voz em sprints futuras.",
+
+    technologies: ["Python", "RPA", "LLM", "Automação"],
+
+    links: [],
+
+  },
+
+  {
+
+    id: "quantica", category: "sprint1", memberId: "pedro",
+
+    subject: "Computação Quântica & IA",
+
+    title: "Computação Quântica Aplicada à Mobilidade",
+
+    summary: "Estudo exploratório de possíveis aplicações quânticas em otimização de recursos, análise de ocorrências e proteção de dados rodoviários.",
+
+    details: "A atividade investiga três frentes: distribuição e roteamento de recursos, priorização e padrões de ocorrências e segurança da informação. O relatório final e a frente escolhida pelo grupo ainda serão conferidos.",
+
+    technologies: ["Quantum Computing", "Otimização", "Quantum ML", "Segurança"],
+
+    links: [], note: "Resumo provisório baseado no enunciado; relatório pendente de conferência.",
+
+  },
+
+  {
+
+    id: "visao", category: "sprint1", memberId: "pedro",
+
+    subject: "Visão Computacional",
+
+    title: "Visão Computacional para Monitoramento Rodoviário",
+
+    summary: "Pesquisa de datasets e modelos para identificar objetos e condições relevantes em imagens de ambientes rodoviários.",
+
+    details: "O trabalho prevê arquitetura de captura, inferência e integração com os módulos de voz e interface, além de uma prova de conceito para comparação de modelos pré-treinados. Detecções devem ser confirmadas por operadores antes do registro definitivo.",
+
+    technologies: ["Computer Vision", "Python", "Datasets", "Detecção de objetos"],
+
+    links: [], note: "Pesquisa e prova de conceito; não é um sistema operacional implantado.",
+
+  },
+
+  {
+
+    id: "frontend", category: "sprint1", memberId: "gabriel",
+
+    subject: "Front End & Mobile Development",
+
+    title: "Plataforma Operacional — MVP Front-end",
+
+    summary: "Construção da interface inicial para consultas e histórico de interações de profissionais de campo da Motiva.",
+
+    details: "Projeto preparatório em React e Vite com navegação entre telas, componentes reutilizáveis, listagens de informações operacionais e comandos simulados. A base foi pensada para evoluir nas próximas sprints.",
+
+    technologies: ["React", "Vite", "JavaScript", "Componentização"],
+
+    links: [], note: "Interações simuladas, sem agente de voz integrado nesta etapa.",
+
+  },
+
+  {
+
+    id: "iot", category: "sprint1", memberId: "gabriel",
+
+    subject: "Physical Computing, Embedded AI, Robotics & Cognitive IoT",
+
+    title: "IoT e Ativação por Voz para Operações Rodoviárias",
+
+    summary: "Proposta de interação por palavra de ativação e coleta de dados de sensores com ESP32 para integração futura à plataforma.",
+
+    details: "A atividade envolve arquitetura IoT, coleta de exemplos de áudio para wake word, avaliação do modelo e leitura de sensores em um microcontrolador ESP32. Os materiais incluem código e documentação da proposta.",
+
+    technologies: ["ESP32", "IoT", "Wake Word", "Sistemas embarcados"],
+
+    links: [], note: "Os resultados quantitativos do modelo ainda precisam de conferência.",
+
+  },
+
+  {
+
+    id: "pln", category: "sprint1", memberId: "gabriel",
+
+    subject: "Processamento de Linguagem Natural, Chatbots & Virtual Agents",
+
+    title: "Compreensão de Linguagem para Operações Rodoviárias",
+
+    summary: "Preparação da camada de compreensão de comandos operacionais, considerando intenções, entidades e transcrições de voz.",
+
+    details: "A atividade trabalha taxonomia de intenções, vocabulário rodoviário, corpus anotado, normalização de transcrições e baseline de identificação de intenções e entidades. Os materiais incluem áudios, anotações e notebook de experimentação.",
+
+    technologies: ["Python", "NLP", "NLU", "Speech-to-Text"],
+
+    links: [], note: "Métricas e resultados finais ainda precisam de validação.",
+
+  },
+
+];
+
+
+
+function MemberAvatar({ memberId }: { memberId: MemberId }) {
+
+  const member = members[memberId];
+
+  const [failed, setFailed] = useState(false);
+
   return (
-    <div className="nexu-demo relative w-full overflow-hidden rounded-2xl border p-3 shadow-2xl sm:p-4" aria-label="Demonstração visual do painel NEXU">
-      <div className="mb-3 flex items-center justify-between gap-2 border-b border-white/10 pb-3">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-[var(--apex-accent)] shadow-[0_0_12px_var(--apex-accent)]" />
-          <span className="text-[11px] font-bold tracking-[.16em] text-white">NEXU / OPERATIONS</span>
-        </div>
-        <span className="rounded-full border border-white/15 px-2 py-1 text-[9px] font-semibold tracking-widest text-slate-300">DEMO VISUAL</span>
-      </div>
-      <div className="grid min-h-[305px] grid-cols-[42px_minmax(0,1fr)] gap-2 sm:grid-cols-[44px_minmax(0,1fr)_minmax(0,.95fr)] sm:gap-3">
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-black/30 p-1.5">
-          {tabs.map((tab) => (
-            <button key={tab.id} type="button" onClick={() => setView(tab.id)} aria-label={`Visualizar ${tab.label}`} aria-pressed={view === tab.id} title={tab.label} className={`flex h-9 w-9 items-center justify-center rounded-lg border text-lg transition ${view === tab.id ? "border-[var(--apex-accent)] bg-[var(--apex-soft)] text-[var(--apex-accent)]" : "border-transparent text-slate-400 hover:border-white/20 hover:text-white"}`}>
-              {tab.symbol}
-            </button>
-          ))}
-          <span className="mt-auto pb-2 text-[9px] font-bold text-slate-500 [writing-mode:vertical-rl]">NEXU AI</span>
-        </div>
-        <div className="flex min-w-0 flex-col gap-3">
-          <div className="nexu-demo-panel flex min-h-[150px] flex-1 flex-col rounded-xl border p-3">
-            {view === "audio" ? (
-              <>
-                <div className="flex items-center justify-between gap-2"><span className="text-[11px] font-semibold text-slate-200">Relato por áudio</span><span className="text-[10px] text-[var(--apex-accent)]">● Exemplo</span></div>
-                <p className="mt-2 text-[10px] text-slate-400">Visualização ilustrativa de uma gravação</p>
-                <div className="my-auto flex h-20 items-center justify-center gap-[2px] overflow-hidden" aria-label="Forma de onda ilustrativa">
-                  {bars.map((height, index) => <span key={index} className="nexu-wave-bar w-[3px] shrink-0 rounded-full bg-[var(--apex-accent)]" style={{ height: `${height}px`, animationDelay: `${(index % 9) * -0.13}s` }} />)}
-                </div>
-                <div className="flex justify-between text-[10px] text-slate-400"><span>00:00</span><span>00:24</span></div>
-              </>
-            ) : view === "data" ? (
-              <>
-                <p className="text-[11px] font-semibold text-slate-200">Informações estruturadas</p>
-                <div className="mt-4 grid grid-cols-2 gap-2 text-[11px]">
-                  {[ ["Rodovia", "BR-116"], ["KM", "402"], ["Sentido", "Sul"], ["Tipo", "Pane"] ].map(([label,value]) => <div key={label} className="rounded-lg border border-white/10 bg-black/20 p-2"><p className="text-slate-400">{label}</p><p className="mt-1 font-semibold text-white">{value}</p></div>)}
-                </div>
-              </>
-            ) : (
-              <>
-                <p className="text-[11px] font-semibold text-slate-200">Confirmação humana</p>
-                <div className="mt-4 rounded-lg border border-white/10 bg-black/20 p-3"><p className="text-[10px] text-slate-400">Relato ilustrativo</p><p className="mt-2 text-xs leading-relaxed text-white">Veículo parado no acostamento. Possível pane mecânica.</p></div>
-                <div className="mt-auto pt-3 text-[10px] text-slate-400">A revisão pelo operador faz parte do fluxo do produto.</div>
-              </>
-            )}
-          </div>
-          <div className="nexu-demo-panel rounded-xl border p-3">
-            <div className="flex items-center gap-2"><span className="nexu-spin text-lg text-[var(--apex-accent)]">✦</span><span className="text-[11px] font-semibold text-white">Processamento com IA</span></div>
-            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10"><div className="nexu-progress h-full w-2/3 rounded-full bg-[var(--apex-accent)]" /></div>
-            <p className="mt-2 text-[10px] text-slate-400">Animação demonstrativa • Sem processamento real</p>
-          </div>
-        </div>
-        <div className="nexu-demo-panel relative col-span-2 min-h-[220px] overflow-hidden rounded-xl border sm:col-span-1 sm:min-h-0">
-          <div className="absolute inset-0 opacity-80" style={{ backgroundImage: "linear-gradient(25deg, transparent 47%, rgba(255,255,255,.06) 48%, transparent 49%),linear-gradient(120deg, transparent 46%, rgba(255,255,255,.05) 47%, transparent 48%)", backgroundSize: "42px 52px, 55px 40px" }} />
-          <svg viewBox="0 0 260 320" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <g fill="none" stroke="rgba(148,163,184,.22)" strokeWidth="1.2"><path d="M-10 38L90 70 175 22 275 52M-10 115L75 90 155 135 275 92M-10 205L80 180 170 220 275 188M-10 290L85 250 155 280 275 265"/><path d="M40 -10L80 90 45 180 95 330M145 -10L120 90 180 175 155 330M230 -10L205 105 240 215 215 330"/></g>
-            <path d="M42 24 C180 35 58 105 127 132 S230 182 171 220 S85 273 230 311" fill="none" stroke="var(--apex-accent)" strokeWidth="3.5" strokeLinecap="round" />
-            {[ [42,24], [127,132], [171,220], [230,311] ].map(([x,y],i)=><g key={i}><circle cx={x} cy={y} r="15" fill="var(--apex-accent)" opacity=".15"/><circle cx={x} cy={y} r="7" fill="var(--apex-accent)"/><circle cx={x} cy={y} r="3" fill="#fff"/></g>)}
-          </svg>
-          <div className="absolute left-3 top-3 rounded-md border border-white/15 bg-[#07121e]/90 px-2.5 py-1.5 text-[10px] text-white">BR-116 · MAPA ILUSTRATIVO</div>
-          <div className="absolute bottom-3 right-3 rounded-md border border-white/15 bg-[#07121e]/90 px-2 py-1 text-[10px] text-slate-300">4 pontos</div>
-        </div>
-      </div>
+
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[var(--apex-accent)]/30 bg-[var(--apex-accent)]/10">
+
+      {failed ? (
+
+        <span className="apex-accent text-xs font-bold">{member.initials}</span>
+
+      ) : (
+// As imagens ficam em public/images/equipe, conforme o componente original.// eslint-disable-next-line @next/next/no-img-element
+        <img src={member.image} alt="" className="h-full w-full object-cover" onError={() => setFailed(true)} />
+
+      )}
+
     </div>
+
+  );
+
+}
+
+
+
+export default function DeliveriesSection() {
+  // Nenhuma Sprint começa aberta, mantendo a página compacta.
+  const [activeCategory, setActiveCategory] = useState<DeliveryCategory | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const visible = deliveries.filter((item) => item.category === activeCategory);
+
+  function toggleCategory(category: DeliveryCategory) {
+    setActiveCategory((current) => current === category ? null : category);
+    setExpandedId(null);
+  }
+
+  return (
+    <section id="entregas" aria-labelledby="deliveries-title" className="apex-divider scroll-mt-24 border-t px-5 py-24 md:px-8 md:py-28">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-10">
+          <p className="apex-accent mb-4 text-xs font-bold tracking-[0.26em]">04 / APEX DELIVERIES</p>
+          <h2 id="deliveries-title" className="max-w-3xl text-4xl font-black tracking-tight md:text-5xl">
+            Nosso trabalho,<span className="apex-accent"> nossa evolução.</span>
+          </h2>
+          <p className="apex-muted mt-6 max-w-2xl leading-relaxed">
+            Explore as entregas acadêmicas da APEX. Cada projeto representa uma etapa do nosso desenvolvimento no Challenge Motiva 2026.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2" aria-label="Sprints acadêmicas">
+          {categories.map((category, index) => {
+            const opened = activeCategory === category.id;
+            const count = deliveries.filter((item) => item.category === category.id).length;
+            return (
+              <button
+                key={category.id}
+                type="button"
+                aria-expanded={opened}
+                aria-controls={opened ? "apex-sprint-content" : undefined}
+                onClick={() => toggleCategory(category.id)}
+                className={`group relative flex min-h-[142px] flex-col justify-between rounded-2xl border p-5 text-left transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--apex-accent)] sm:p-6 ${opened ? "apex-soft border-[var(--apex-accent)]" : "apex-neutral-card hover:border-[var(--apex-accent)]"}`}
+              >
+                <div className="flex w-full items-center justify-between gap-3">
+                  <span className="apex-accent text-xs font-bold tracking-widest">{String(index + 1).padStart(2, "0")}</span>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`apex-accent h-5 w-5 transition-transform duration-300 ${opened ? "rotate-180" : ""}`}>
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </div>
+                <div className="mt-6 flex items-end justify-between gap-3">
+                  <div>
+                    <h3 className="text-xl font-bold tracking-tight">{category.title}</h3>
+                    <p className="apex-muted mt-1 text-xs">{category.subtitle}</p>
+                  </div>
+                  <span className="apex-accent shrink-0 text-[10px] font-semibold">{count ? `${String(count).padStart(2, "0")} TRABALHOS` : "EM BREVE"}</span>
+                </div>
+                <div className={`mt-5 h-0.5 w-full transition-colors duration-300 ${opened ? "bg-[var(--apex-accent)]" : "apex-rule"}`} />
+              </button>
+            );
+          })}
+        </div>
+
+        {activeCategory && (
+          <div id="apex-sprint-content" className="apex-card mt-5 overflow-hidden rounded-3xl border">
+            <div className="apex-divider flex flex-wrap items-center justify-between gap-4 border-b p-6 md:p-8">
+              <div>
+                <p className="apex-accent mb-2 text-xs font-bold tracking-[0.2em]">ETAPA SELECIONADA</p>
+                <h3 className="text-2xl font-bold md:text-3xl">{categories.find((c) => c.id === activeCategory)?.title}</h3>
+                <p className="apex-muted mt-2 text-sm">{visible.length ? "Conheça os trabalhos e seus responsáveis." : "As entregas desta etapa serão adicionadas em breve."}</p>
+              </div>
+              <span className="apex-soft apex-accent rounded-full border px-4 py-2 text-xs font-semibold">
+                {String(visible.length).padStart(2, "0")} {visible.length === 1 ? "TRABALHO" : "TRABALHOS"}
+              </span>
+            </div>
+            {visible.length ? (
+<div className="grid grid-cols-1 gap-4 p-4 sm:p-6 md:grid-cols-2 md:p-8 xl:grid-cols-3">
+
+              {visible.map((delivery, index) => {
+
+                const expanded = expandedId === delivery.id;
+
+                const detailId = `delivery-details-${delivery.id}`;
+
+                return (
+
+                  <article key={delivery.id} className="apex-neutral-card flex min-w-0 flex-col rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--apex-accent)] sm:p-6">
+
+                    <div className="mb-4 flex items-center justify-between gap-2">
+
+                      <span className="apex-accent text-[10px] font-bold tracking-[0.2em]">ENTREGA {String(index + 1).padStart(2, "0")}</span>
+
+                      <span className="apex-tag rounded-full border px-3 py-1 text-[10px]">{activeCategory === "sprint1" ? "SPRINT 01" : "SPRINT 02"}</span>
+
+                    </div>
+
+                    <p className="apex-muted mb-2 text-xs font-semibold leading-relaxed">{delivery.subject}</p>
+
+                    <h4 className="text-lg font-bold leading-snug">{delivery.title}</h4>
+
+                    <p className="apex-muted mt-3 text-sm leading-relaxed">{delivery.summary}</p>
+
+                    <div className="mt-5 flex flex-wrap gap-2">
+
+                      {delivery.technologies.map((tech) => <span key={tech} className="apex-tag rounded-lg border px-2.5 py-1.5 text-[11px]">{tech}</span>)}
+
+                    </div>
+
+                    <div className="mt-auto pt-6">
+
+                      <button type="button" aria-expanded={expanded} aria-controls={detailId}
+
+                        onClick={() => setExpandedId(expanded ? null : delivery.id)}
+
+                        className="apex-accent rounded-lg py-2 text-sm font-semibold underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--apex-accent)]">
+
+                        {expanded ? "Ocultar detalhes −" : "Ver detalhes +"}
+
+                      </button>
+
+                      {expanded && (
+
+                        <div id={detailId} className="apex-divider mt-2 border-t pt-4">
+
+                          <p className="apex-muted text-sm leading-relaxed">{delivery.details}</p>
+
+                          {delivery.note && <p className="apex-muted mt-3 text-xs italic">{delivery.note}</p>}
+
+                          {delivery.links.length > 0 && (
+
+                            <div className="mt-4 flex flex-wrap gap-3">
+
+                              {delivery.links.map((link) => (
+
+                                <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer"
+
+                                  className="apex-accent rounded-lg border border-[var(--apex-accent)]/30 px-3 py-2 text-xs font-semibold hover:border-[var(--apex-accent)]">
+
+                                  {link.label} ↗
+
+                                </a>
+
+                              ))}
+
+                            </div>
+
+                          )}
+
+                        </div>
+
+                      )}
+
+                      <div className="apex-divider mt-4 flex items-center gap-3 border-t pt-4">
+
+                        <MemberAvatar memberId={delivery.memberId} />
+
+                        <div className="min-w-0">
+
+                          <p className="text-xs font-semibold leading-snug">{members[delivery.memberId].name}</p>
+
+                          <p className="apex-muted mt-1 text-[11px]">Responsável pela entrega</p>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </article>
+
+                );
+
+              })}
+
+            </div>
+
+            ) : (
+              <div className="px-6 py-16 text-center md:px-8">
+                <p className="apex-accent text-sm font-bold">PRÓXIMOS CAPÍTULOS</p>
+                <p className="apex-muted mx-auto mt-3 max-w-md text-sm leading-relaxed">Estamos construindo essa etapa. Os trabalhos serão publicados conforme a evolução do Challenge.</p>
+              </div>
+            )}
+            <div className="apex-divider border-t px-6 py-5 md:px-8">
+              <p className="apex-muted text-xs tracking-[0.08em]">APEX / CHALLENGE MOTIVA 2026 / HISTÓRICO ACADÊMICO</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
