@@ -60,20 +60,6 @@ const indicators = [
 
 // Section
 
-const technologies = [
-
-  "Python",
-
-  "FastAPI",
-
-  "Gemini",
-
-  "Streamlit",
-
-  "SQLite",
-
-];
-
 // Section
 
 const navigation = [
@@ -167,6 +153,7 @@ export default function Home() {
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
 
             <ThemeSwitcher />
+
             <MobileMenu />
 
             <a
@@ -245,7 +232,7 @@ export default function Home() {
 
               <p className="apex-accent text-xs font-semibold tracking-[0.25em] md:text-sm">
 
-                CHALLENGE MOTIVA 2026
+                CHALLENGE MOTIVA 2026–2027
 
               </p>
 
@@ -319,7 +306,7 @@ export default function Home() {
 
         <div className="absolute bottom-10 right-8 z-10 hidden flex-col items-end gap-2 text-[10px] tracking-[0.2em] text-slate-300/70 lg:flex">
 
-          <span>APEX / 2026</span>
+          <span>APEX / 2026–2027</span>
 
           <span>TECHNOLOGY & INNOVATION</span>
 
@@ -497,79 +484,111 @@ export default function Home() {
 
           </p>
 
-          {/* CARD PRINCIPAL NEXU */}
+                      {/* CARD PRINCIPAL NEXU — apresentação visual conceitual */}
 
-          <div className="apex-card mt-12 overflow-hidden rounded-3xl border transition duration-300 hover:border-[var(--apex-accent)]">
+            <div className="apex-card mt-12 overflow-hidden rounded-3xl border transition duration-300 hover:border-[var(--apex-accent)]">
 
-            <div className="p-7 md:p-12">
+              <div className="grid items-center gap-10 p-7 md:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8 lg:p-12">
 
-              {/* DESCRIÇÃO DO PROJETO */}
+                <div className="flex min-w-0 flex-col justify-center">
 
-              <div className="flex max-w-3xl flex-col justify-center">
+                  <span className="apex-soft apex-accent mb-6 w-fit rounded-full border px-4 py-2 text-xs font-semibold">
 
-                <span className="apex-soft apex-accent mb-6 w-fit rounded-full border px-4 py-2 text-xs font-semibold">
+                    MVP DESENVOLVIDO
 
-                  MVP DESENVOLVIDO
+                  </span>
 
-                </span>
+                  <h3 className="text-4xl font-bold tracking-tight md:text-5xl">{project.name}</h3>
 
-                <h3 className="text-4xl font-bold tracking-tight md:text-5xl">
+                  <p className="apex-muted mt-6 max-w-lg leading-relaxed">
 
-                  {project.name}
+                    Assistente de inteligência artificial desenvolvido para apoiar profissionais de operações rodoviárias no registro de ocorrências, utilizando processamento de linguagem natural e interação por voz.
 
-                </h3>
+                  </p>
 
-                <p className="apex-muted mt-6 leading-relaxed">
+                  <div className="mt-8 flex flex-wrap gap-3">
 
-                  Assistente de inteligência artificial desenvolvido
+                    <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" className="apex-button rounded-lg px-5 py-3 text-sm font-semibold transition hover:brightness-110">
 
-                  para apoiar profissionais de operações rodoviárias
+                      Explorar solução ↗
 
-                  no registro de ocorrências, utilizando processamento
+                    </a>
 
-                  de linguagem natural e interação por voz.
+                    <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" className="apex-soft apex-accent rounded-lg border px-5 py-3 text-sm font-semibold transition hover:brightness-110">
 
-                </p>
+                      Ver no GitHub ↗
 
-                {/* TECNOLOGIAS */}
+                    </a>
 
-                <div className="mt-8 flex flex-wrap gap-2">
-
-                  {technologies.map((tech) => (
-
-                    <span
-
-                      key={tech}
-
-                      className="apex-tag rounded-lg border px-3 py-2 text-xs"
-
-                    >
-
-                      {tech}
-
-                    </span>
-
-                  ))}
+                  </div>
 
                 </div>
 
-                {/* GITHUB */}
+                {/* Ilustração decorativa: não representa uma tela funcional do NEXU */}
 
-                <a
+                <div aria-label="Ilustração conceitual de uma central rodoviária com áudio e mapa de conexões" role="img" className="relative min-w-0 overflow-hidden rounded-2xl border border-cyan-400/30 bg-[#030d17] p-3 text-white shadow-[0_0_45px_-20px_rgba(0,200,255,0.65)] sm:p-5">
 
-                  href={project.repositoryUrl}
+                  <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-50" style={{backgroundImage:"linear-gradient(rgba(0,200,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,.055) 1px,transparent 1px)",backgroundSize:"22px 22px"}} />
 
-                  target="_blank"
+                  <div className="relative mb-4 flex items-center justify-between gap-3 border-b border-cyan-400/15 pb-3">
 
-                  rel="noopener noreferrer"
+                    <div className="flex items-center gap-2"><span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400"/><span className="text-[10px] font-bold tracking-[0.2em] text-cyan-200">NEXU / OPERATIONS</span></div>
 
-                  className="apex-button mt-10 w-fit rounded-lg px-6 py-3 font-semibold transition hover:brightness-110"
+                    <span className="text-[9px] tracking-wider text-cyan-200/50">VISUAL CONCEITUAL</span>
 
-                >
+                  </div>
 
-                  Ver projeto no GitHub ↗
+                  <div className="relative flex gap-3">
 
-                </a>
+                    <div className="flex w-9 shrink-0 flex-col items-center gap-4 rounded-xl border border-cyan-400/20 bg-[#081c2a] py-4 text-cyan-300 sm:w-11">
+
+                      <span aria-hidden="true">◉</span><span aria-hidden="true">▤</span><span aria-hidden="true">⌁</span><span aria-hidden="true">⌖</span>
+
+                    </div>
+
+                    <div className="grid min-w-0 flex-1 grid-cols-1 gap-3 sm:grid-cols-2">
+
+                      <div className="flex min-h-[215px] min-w-0 flex-col rounded-xl border border-cyan-400/25 bg-[#071a29]/95 p-3">
+
+                        <div className="flex items-center justify-between gap-2"><span className="text-[10px] text-cyan-100">Gravando ocorrência...</span><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400"/></div>
+
+                        <div className="my-auto flex h-24 items-center justify-center gap-[3px] overflow-hidden">
+
+                          {Array.from({length:35},(_,i)=>(<span key={i} className="nexu-wave-bar w-[3px] shrink-0 rounded-full bg-cyan-400/85" style={{height:`${14 + ((i*17+11)%65)}%`,animationDelay:`${(i%9)*-0.13}s`}}/>))}
+
+                        </div>
+
+                        <div className="flex items-center justify-between border-t border-cyan-400/10 pt-3 text-[9px] text-cyan-200/65"><span>ÁUDIO / ENTRADA</span><span>00:24</span></div>
+
+                        <div className="mt-3 rounded-lg border border-cyan-400/25 bg-cyan-400/10 px-3 py-2 text-center text-[10px] font-medium text-cyan-200"><span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-cyan-400"/>Processando com IA...</div>
+
+                      </div>
+
+                      <div className="relative min-h-[215px] overflow-hidden rounded-xl border border-cyan-400/25 bg-[#071a29]/95">
+
+                        <div className="absolute left-3 top-3 z-10 text-[10px] text-cyan-100">Mapa de conexões</div>
+
+                        <svg aria-hidden="true" viewBox="0 0 240 240" className="h-full min-h-[215px] w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                          <g stroke="#12405a" strokeWidth="1.3"><path d="M0 52L55 79L107 37L174 61L240 19M0 148L62 122L107 37L141 135L212 107L240 145M25 240L62 122L141 135L176 209L240 184M55 79L141 135L174 61L212 107L176 209M0 194L62 122L107 195L176 209"/></g>
+
+                          <g stroke="#00c8ff" strokeWidth="2" strokeLinecap="round" opacity=".85"><path d="M55 79L107 37L174 61L212 107L176 209"/><path d="M62 122L141 135L212 107"/></g>
+
+                          <g fill="#00c8ff"><circle cx="55" cy="79" r="4"/><circle cx="107" cy="37" r="5"/><circle cx="174" cy="61" r="4"/><circle cx="212" cy="107" r="7"/><circle cx="141" cy="135" r="6"/><circle cx="176" cy="209" r="4"/><circle cx="62" cy="122" r="4"/></g>
+
+                          <g fill="#00c8ff" opacity=".16"><circle cx="212" cy="107" r="17"/><circle cx="141" cy="135" r="14"/><circle cx="107" cy="37" r="12"/></g>
+
+                        </svg>
+
+                        <span className="absolute bottom-3 right-3 text-[9px] tracking-widest text-cyan-200/60">NETWORK / LIVE</span>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
 
               </div>
 
@@ -577,9 +596,7 @@ export default function Home() {
 
           </div>
 
-        </div>
-
-      </section>
+</section>
 
       {/* Section */}
 
